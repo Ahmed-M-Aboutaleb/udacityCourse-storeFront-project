@@ -22,6 +22,13 @@ Your application must make use of the following libraries:
 -   Run `yarn watch` to start the application
 -   Run `yarn test` to run the tests
 
+## Setup database
+
+-   Create a new postgres database
+-   You can use docker-compose up to create the database
+-   Run `yarn add global db-migrate` to install migrate package
+-   Run `db-migrate up` to create the tables
+
 ## Endpoints
 
 -   GET /v1/products

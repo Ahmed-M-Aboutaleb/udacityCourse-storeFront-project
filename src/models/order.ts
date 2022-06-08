@@ -8,18 +8,28 @@ export type Order = {
 
 export class OrderModel {
     async index(id: number): Promise<Order[]> {
-        const conn = await client.connect();
-        const sql = 'SELECT * FROM orders WHERE user_id = $1';
-        const result = await conn.query(sql, [id]);
-        conn.release();
-        return result.rows[0];
+        try {
+            const conn = await client.connect();
+            const sql = 'SELECT * FROM orders WHERE user_id = $1';
+            const result = await conn.query(sql, [id]);
+            conn.release();
+            return result.rows[0];
+        } catch (error) {
+            console.log(error);
+            return [];
+        }
     }
     async create(order: Order): Promise<Order> {
-        const conn = await client.connect();
-        const sql =
-            'INSERT INTO orders (status, user_id) VALUES ($1, $2) RETURNING *';
-        const result = await conn.query(sql, [order.status, order.user_id]);
-        conn.release();
-        return result.rows[0];
+        try {
+            const conn = await client.connect();
+            const sql =
+                'INSERT INTO orders (status, user_id) VALUES ($1, $2) RETURNING *';
+            const result = await conn.query(sql, [order.status, order.user_id]);
+            conn.release();
+            return result.rows[0];
+        } catch (error) {
+            console.log(error);
+            return {} as Order;
+        }
     }
 }

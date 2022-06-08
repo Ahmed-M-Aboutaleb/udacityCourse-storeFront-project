@@ -29,22 +29,26 @@ These are the notes from a meeting with the frontend developer that describe wha
 
 #### Product
 
--   id
--   name
--   price
--   [OPTIONAL] category
+-   id:String (optional) [Auto-generated]
+-   name: String
+-   price: Number
 
 #### User
 
--   id
--   firstName
--   lastName
--   password
+-   id:String (optional) [Auto-generated]
+-   firstname: String
+-   lastname: String
+-   password: String
 
 #### Orders
 
--   id
--   id of each product in the order
--   quantity of each product in the order
--   user_id
--   status of order (active or complete)
+-   id (optional) [Auto-generated]
+-   user_id: Number
+-   status of order: String (pending or complete)
+
+### Order Products
+
+-   id (optional) [Auto-generated]
+-   order_id: Number
+-   product_id: Number
+-   quantity: Number
