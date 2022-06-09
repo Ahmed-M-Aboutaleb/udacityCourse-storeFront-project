@@ -28,6 +28,20 @@ Your application must make use of the following libraries:
 -   You can use docker-compose up to create the database
 -   Run `yarn add global db-migrate` to install migrate package
 -   Run `db-migrate up` to create the tables
+-   CREATE USER <username> WITH PASSWORD '<password>';
+-   CREATE DATABASE <database>;
+-   CREATE DATABASE <database_TEST>;
+-   GRANT ALL PRIVILEGES ON DATABASE <database> TO <username>;
+-   GRANT ALL PRIVILEGES ON DATABASE <database_TEST> TO <username>;
+
+## Environment Variables
+
+-   POSTGRES_DB
+-   POSTGRES_DB_TEST
+-   POSTGRES_USER
+-   POSTGRES_PASSWORD
+-   ENV = 'dev'
+-   JWT_SECRET
 
 ## Endpoints
 

@@ -6,9 +6,7 @@ const verifyToken = (req: Request, res: Response, next: NextFunction) => {
     try {
         const authorizationHeader: string = req.headers.authorization as string;
         const token = authorizationHeader.split(' ')[1];
-        console.log(token);
         const decoded = verify(token, process.env.JWT_SECRET as string);
-        console.log(decoded);
         req.body.decoded = decoded;
         next();
     } catch (error) {

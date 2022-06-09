@@ -24,7 +24,7 @@ describe('Order', () => {
         expect(result).toBeDefined();
     });
     it('should return an order', async () => {
-        const result = await order.index(1);
+        const result = await order.index();
         expect(result).toBeDefined();
     });
 });

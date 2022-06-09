@@ -6,8 +6,12 @@ import { sign } from 'jsonwebtoken';
 const User = new UserModel();
 
 export const userIndex = async (_req: Request, res: Response) => {
-    const users = await User.index();
-    res.json(users);
+    try {
+        const users = await User.index();
+        res.json(users);
+    } catch (error) {
+        res.status(500).json({ error: 'Internal server error' });
+    }
 };
 
 export const userShow = async (_req: Request, res: Response) => {
@@ -18,8 +22,12 @@ export const userShow = async (_req: Request, res: Response) => {
         });
         return;
     }
-    const user = await User.show(id);
-    res.json(user);
+    try {
+        const user = await User.show(id);
+        res.json(user);
+    } catch (error) {
+        res.status(500).json({ error: 'Internal server error' });
+    }
 };
 
 export const userCreate = async (req: Request, res: Response) => {
@@ -49,7 +57,6 @@ export const userCreate = async (req: Request, res: Response) => {
             user_id: newUser.id,
         };
         let token = sign(tokenPayload, process.env.JWT_SECRET as string);
-        console.log(token);
         res.json(token);
     } catch (error) {
         console.log(error);

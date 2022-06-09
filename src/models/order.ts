@@ -7,11 +7,11 @@ export type Order = {
 };
 
 export class OrderModel {
-    async index(id: number): Promise<Order[]> {
+    async index(): Promise<Order[]> {
         try {
             const conn = await client.connect();
-            const sql = 'SELECT * FROM orders WHERE user_id = $1';
-            const result = await conn.query(sql, [id]);
+            const sql = 'SELECT * FROM orders';
+            const result = await conn.query(sql);
             conn.release();
             return result.rows[0];
         } catch (error) {

@@ -4,8 +4,12 @@ import { Product, ProductModel } from '../models/product';
 const Product = new ProductModel();
 
 export const productIndex = async (_req: Request, res: Response) => {
-    const products = await Product.index();
-    res.json(products);
+    try {
+        const products = await Product.index();
+        res.json(products);
+    } catch (error) {
+        res.status(500).json({ error: 'Internal server error' });
+    }
 };
 
 export const productShow = async (_req: Request, res: Response) => {
@@ -16,8 +20,12 @@ export const productShow = async (_req: Request, res: Response) => {
         });
         return;
     }
-    const product = await Product.show(id);
-    res.json(product);
+    try {
+        const product = await Product.show(id);
+        res.json(product);
+    } catch (error) {
+        res.status(500).json({ error: 'Internal server error' });
+    }
 };
 
 export const productCreate = async (req: Request, res: Response) => {
@@ -32,6 +40,10 @@ export const productCreate = async (req: Request, res: Response) => {
         });
         return;
     }
-    const newProduct = await Product.create(product);
-    res.json(newProduct);
+    try {
+        const newProduct = await Product.create(product);
+        res.json(newProduct);
+    } catch (error) {
+        res.status(500).json({ error: 'Internal server error' });
+    }
 };
